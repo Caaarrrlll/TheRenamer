@@ -9,17 +9,17 @@ document.ondrop = (ev) => {
 	basicRename(ev.dataTransfer.files);
 };
 
-const Matcher = {
-	sddedd: "sddedd",
-	dxdd: "dxdd",
-	dd: "dd",
-};
+// const Matcher = {
+// 	sddedd: "sddedd",
+// 	dxdd: "dxdd",
+// 	dd: "dd",
+// };
 
-const Matchers = {
-	[Matcher.sddedd]: /s\d+(-?e\d+){1,}/gi,
-	[Matcher.dxdd]: /\d+x\d+/gi,
-	[Matcher.dd]: /-\s\d+/gi,
-};
+// const Matchers = {
+// 	[Matcher.sddedd]: /s\d+(-?e\d+){1,}/gi,
+// 	[Matcher.dxdd]: /\d+x\d+/gi,
+// 	[Matcher.dd]: /-\s\d+/gi,
+// };
 
 basicRename = (files) => {
 	if (files.length == 0) return;
@@ -34,6 +34,7 @@ getRenamedFile = (file) => {
 	const extension = file.name.split(".").pop();
 	const basePath = file.path.replace(file.name, "");
 
+	/* @TODO: Make this more generic to cater for more types of series naming */
 	const startIndex = file.name.toLowerCase().search(/s\d+e\d+/);
 
 	const seasonInfo = file.name
