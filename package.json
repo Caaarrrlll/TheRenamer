@@ -1,0 +1,26 @@
+{
+	"name": "renamer",
+	"version": "1.0.0",
+	"description": "Application to rename video files",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron ."
+	},
+	"keywords": [
+		"renamer",
+		"caaarrrlll",
+		"thetvdb",
+		"javascript",
+		"electron"
+	],
+	"author": "Francois Venter",
+	"license": "MIT",
+	"devDependencies": {
+		"electron": "^18.2.0",
+		"electron-reloader": "^1.2.3"
+	},
+	"dependencies": {
+		"axios": "^0.27.2",
+		"fs-extra": "^10.1.0"
+	}
+}
