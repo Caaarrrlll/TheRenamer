@@ -25,7 +25,9 @@ getRenamedFile = async (file) => {
 	const extension = file.name.split(".").pop();
 	const basePath = file.path.replace(file.name, "");
 
-	/* @TODO: Make this more generic to cater for more types of series naming */
+	/* 
+		TODO: Make this more generic to cater for more types of series naming 
+	*/
 	const startIndex = file.name.toLowerCase().search(/s\d+e\d+/);
 
 	// @TODO: Clean file name before processing
