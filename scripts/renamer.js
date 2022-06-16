@@ -82,10 +82,9 @@ getRenamedFile = async (file) => {
 		});
 
 	const cleanedSeasonInfo = `S${seasonNumber}E${episodeNumber}`;
-	const windowsFriendlyEpisodeName = episodeDetails.data.name.replace(
-		/\?|<|>|:|\*|\\|\/|\|/g,
-		""
-	);
+	const windowsFriendlyEpisodeName = episodeDetails.data.name
+		.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
+		.replace(/"/g, "'");
 
 	return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
 };
