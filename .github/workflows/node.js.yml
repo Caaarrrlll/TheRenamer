@@ -30,4 +30,4 @@ jobs:
             - run: npm ci
             - run: npm run pack
             - run: npm run dist -- -w
-            - curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer '${{DROPBOX_SECRET}} --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
+            - curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer '${{DROPBOX_SECRET}}' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
