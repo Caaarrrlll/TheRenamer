@@ -14,11 +14,11 @@ jobs:
         strategy:
             matrix:
                 # , macos-latest, windows-latest
-                # platform: [ubuntu-latest]
+                platform: [ubuntu-latest]
                 node-version: [16.x]
                 # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.platform }}
 
         steps:
             - uses: actions/checkout@v3
