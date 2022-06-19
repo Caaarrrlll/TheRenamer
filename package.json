@@ -9,7 +9,7 @@
 		"pack-w": "electron-builder --dir -w",
 		"pack-m": "electron-builder --dir -m",
 		"dist-l": "electron-builder -- -l",
-		"dist-w": "electron-builder -- -w",
+		"dist-w": "electron-builder -- -w --publish=never",
 		"dist-m": "electron-builder -- -m"
 	},
 	"keywords": [
