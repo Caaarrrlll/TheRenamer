@@ -15,7 +15,10 @@
 		"electron",
 		"tvmaze"
 	],
-	"author": "Francois Venter",
+	"author": {
+		"name": "Francois Venter",
+		"email": "francois@venter.com"
+	},
 	"license": "MIT",
 	"devDependencies": {
 		"electron": "^18.2.0",
