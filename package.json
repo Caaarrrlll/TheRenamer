@@ -5,7 +5,7 @@
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",
-		"pack": "electron-builder --dir -l",
+		"pack": "electron-builder --dir -lw",
 		"dist": "electron-builder"
 	},
 	"keywords": [
@@ -32,7 +32,7 @@
 	},
 	"build": {
 		"appId": "com.electron.renamerremakev3",
-		"copyright": "Copyright © 2018 @Caaarrrlll-Sama",
+		"copyright": "Copyright © 2022 @Caaarrrlll-Sama",
 		"mac": {
 			"target": "tar.gz",
 			"category": "public.app-category.utilities"
