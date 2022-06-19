@@ -1,1 +1,3 @@
 node_modules
+dist/win-unpacked
+renamer\ Setup\ 0.9.0.*
