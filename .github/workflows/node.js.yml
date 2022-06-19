@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI
 
 on:
@@ -28,5 +25,5 @@ jobs:
                   DROPBOX_SECRET: ${{secrets.DROPBOX_ACCESS_TOKEN}}
             - run: npm ci
             - run: npm run dist-l
-            - run: curl -H "Authorization:Bearer $DROPBOX_SECRET" -H 'Content-Type:application/octet-stream' -H 'Dropbox-API-Arg:{"path":"/renamerremake.deb","mode":{".tag":"overwrite"}}' --data-binary @"dist/renamer_0.9.0_amd64.deb" -X POST https://content.dropboxapi.com/2/files/upload
+            - run: curl -H "Authorization:Bearer sl.BJ15E0CMAmaG6Wn8utKlSlk0Nn4LWILfrU0FLNr3ltUuZ2L1APpdNxB4R6_7ULCJTtwc-amXPmFvfAZIwNn1bsezlqVgt3PDpE7E53JxOB6IaclhubWVgB3UdZaIvRf3jVzDOQc5" -H 'Content-Type:application/octet-stream' -H 'Dropbox-API-Arg:{"path":"/renamerremake.deb","mode":{".tag":"overwrite"}}' --data-binary @"dist/renamer_0.9.0_amd64.deb" -X POST https://content.dropboxapi.com/2/files/upload
             # - run: curl -H "Authorization:Bearer $DROPBOX_SECRET" -H 'Content-Type:application/octet-stream' -H 'Dropbox-API-Arg:{"path":"/renamerremake.deb","mode":{".tag":"overwrite"}}' --data-binary @"dist/renamer Setup 0.9.0.exe" -X POST https://content.dropboxapi.com/2/files/upload
