@@ -1,26 +1,51 @@
 {
 	"name": "renamer",
-	"version": "1.0.0",
+	"version": "0.9.0",
 	"description": "Application to rename video files",
 	"main": "main.js",
 	"scripts": {
-		"start": "electron ."
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder"
 	},
 	"keywords": [
 		"renamer",
 		"caaarrrlll",
-		"thetvdb",
 		"javascript",
-		"electron"
+		"electron",
+		"tvmaze"
 	],
 	"author": "Francois Venter",
 	"license": "MIT",
 	"devDependencies": {
 		"electron": "^18.2.0",
+		"electron-builder": "^23.0.3",
 		"electron-reloader": "^1.2.3"
 	},
 	"dependencies": {
 		"axios": "^0.27.2",
 		"fs-extra": "^10.1.0"
-	}
+	},
+	"build": {
+		"appId": "com.electron.renamerremakev3",
+		"copyright": "Copyright © 2018 @Caaarrrlll-Sama",
+		"mac": {
+			"target": "tar.gz",
+			"category": "public.app-category.utilities"
+		},
+		"win": {
+			"target": "nsis"
+		},
+		"linux": {
+			"target": "deb"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Caaarrrlll/TheRenamer.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Caaarrrlll/TheRenamer/issues"
+	},
+	"homepage": "https://github.com/Caaarrrlll/TheRenamer/blob/master/README.md"
 }
