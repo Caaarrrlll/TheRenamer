@@ -8,7 +8,9 @@
 		"pack-l": "electron-builder --dir -l",
 		"pack-w": "electron-builder --dir -w",
 		"pack-m": "electron-builder --dir -m",
-		"dist-w": "electron-builder -- -w"
+		"dist-l": "electron-builder -- -l",
+		"dist-w": "electron-builder -- -w",
+		"dist-m": "electron-builder -- -m"
 	},
 	"keywords": [
 		"renamer",
