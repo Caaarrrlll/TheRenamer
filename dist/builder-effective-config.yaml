@@ -1,14 +1,15 @@
 directories:
-  output: dist
-  buildResources: build
+    output: dist
+    buildResources: build
 appId: com.electron.renamerremakev3
 copyright: Copyright © 2022 @Caaarrrlll-Sama
 mac:
-  target: tar.gz
-  category: public.app-category.utilities
+    target: tar.gz
+    category: public.app-category.utilities
 win:
-  target: nsis
+    target: nsis
+    publish: never
 linux:
-  target: deb
+    target: deb
 files: []
 electronVersion: 18.2.0
