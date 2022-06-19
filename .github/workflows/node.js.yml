@@ -36,7 +36,7 @@ jobs:
             # - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
 
         runs-on: windows-latest
-                steps:
+        steps:
             - uses: actions/checkout@v3
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
