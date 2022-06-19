@@ -1,3 +1,7 @@
+# Status
+
+[![Node.js CI](https://github.com/Caaarrrlll/TheRenamer/actions/workflows/node.js.yml/badge.svg)](https://github.com/Caaarrrlll/TheRenamer/actions/workflows/node.js.yml)
+
 # RenamerJS
 
 ## The First Rendition of this app
