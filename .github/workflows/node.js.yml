@@ -14,11 +14,11 @@ jobs:
         strategy:
             matrix:
                 # , macos-latest, windows-latest
-                platform: [ubuntu-latest]
+                # platform: [ubuntu-latest]
                 node-version: [16.x]
                 # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-        runs-on: ${{ matrix.platform }}
+        runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v3
@@ -32,5 +32,21 @@ jobs:
             - run: npm ci
             - run: npm run dist-l
             - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.deb","mode":{".tag":"overwrite"}}' --data-binary @dist/renamer\ Setup\ 0.9.0.deb
+            # - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
+            # - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
+
+        runs-on: windows-latest
+                steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "npm"
+              env:
+                  DROPBOX_SECRET: ${{secrets.DROPBOX_ACCESS_TOKEN}}
+            - run: npm ci
+            - run: npm run dist-w
+            - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.exe","mode":{".tag":"overwrite"}}' --data-binary @'dist/renamer Setup 0.9.0.exe'
             # - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
             # - run: curl -X POST https://content.dropboxapi.com/2/files/upload --header 'Authorization:Bearer $DROPBOX_SECRET' --header 'Content-Type:application/octet-stream' --header 'Dropbox-API-Arg:{"path":"/renamerremake.tar.gz","mode":{".tag":"overwrite"}}' --data-binary @dist/renamerremake-0.9.0-mac.tar.gz
