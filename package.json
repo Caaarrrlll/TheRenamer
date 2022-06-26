@@ -17,7 +17,8 @@
 		"caaarrrlll",
 		"javascript",
 		"electron",
-		"tvmaze"
+		"tvmaze",
+		"actions"
 	],
 	"author": {
 		"name": "Francois Venter",
@@ -38,7 +39,7 @@
 		"appId": "com.electron.renamerremakev3",
 		"copyright": "Copyright © 2022 @Caaarrrlll-Sama",
 		"mac": {
-			"target": "tar.gz",
+			"target": "dmg",
 			"category": "public.app-category.utilities"
 		},
 		"win": {

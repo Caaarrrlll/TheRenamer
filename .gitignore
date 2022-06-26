@@ -1,3 +1,5 @@
 node_modules
 dist/win-unpacked
+dist/mac
 renamer\ Setup\ 0.9.0.*
+renamer-0.9.0*
