@@ -29,10 +29,10 @@ getRenamedFile = async (file) => {
 		.replace(/\s\[[A-Za-z0-9\s]+\]\s/g, "");
 
 	// Matches something [Series Name s01e01 Bla]
-	const startIndexsDDeDD = file.name.toLowerCase().search(/s\d+e\d+/);
-	if (startIndexsDDeDD > 0) {
+	const startIndexDDeDD = file.name.toLowerCase().search(/s\d+e\d+/);
+	if (startIndexDDeDD > 0) {
 		const seasonInfo = file.name
-			.substring(startIndex, file.name.length)
+			.substring(startIndexDDeDD, file.name.length)
 			.split(".")
 			.shift()
 			.split(" ")
