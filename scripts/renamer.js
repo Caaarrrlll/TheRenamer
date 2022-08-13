@@ -22,6 +22,7 @@ basicRename = (files) => {
 };
 
 getRenamedFile = async (file) => {
+	const customName = document.getElementById("custom-name").value;
 	const extension = file.name.split(".").pop();
 	const basePath = file.path.replace(file.name, "");
 	const preppedName = file.name
@@ -38,7 +39,7 @@ getRenamedFile = async (file) => {
 			.split(" ")
 			.shift();
 
-		const seriesName = preppedName
+		let seriesName = preppedName
 			.split(seasonInfo)
 			.shift()
 			.slice(0, -1)
