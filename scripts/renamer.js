@@ -27,7 +27,7 @@ getRenamedFile = async (file) => {
 	const basePath = file.path.replace(file.name, "");
 	const preppedName = file.name
 		.replace(/\s-\s/g, ".")
-		.replace(/\s\[[A-Za-z0-9\s]+\]\s/g, "");
+		.replace(/\s\[[A-Za-z0-9]+\]\s/g, "");
 
 	// Matches something [Series Name s01e01 Bla]
 	const startIndexDDeDD = file.name.toLowerCase().search(/s\d+e\d+/);
@@ -91,8 +91,9 @@ getRenamedFile = async (file) => {
 		return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
 	}
 
+	// Matches: Some Series Name 01x01
 	const startIndexDDxDD = file.name.toLowerCase().search(/\d+x\d+/);
-	if (startIndexDDxDD) {
+	if (startIndexDDxDD > 0) {
 		const seriesName =
 			customName.length > 0
 				? customName
@@ -140,7 +141,80 @@ getRenamedFile = async (file) => {
 		return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
 	}
 
+	// Matches: Some Series Name - 01
 	const startIndexDigitsOnly = file.name.toLowerCase().search(/\d+/);
+	if (startIndexDigitsOnly > 0) {
+		const seriesName =
+			customName.length > 0
+				? customName
+				: file.name
+						.substring(0, startIndexDigitsOnly)
+						.replace(/-/g, "")
+						.replace(/"/g, "'")
+						.trim();
+
+		const episodeNumber = file.name
+			.substring(startIndexDigitsOnly, file.name.length)
+			.split(" ")[0];
+
+		const seriesDetails = await axios
+			.get(`${tvMazeBaseUrl}/singlesearch/shows?q=${seriesName}`)
+			.then((res) => {
+				return res;
+			});
+
+		const episodeDetails = await axios
+			.get(
+				`${tvMazeBaseUrl}/shows/${seriesDetails.data.id}/episodebynumber?season=1&number=${episodeNumber}`
+			)
+			.then((res) => {
+				return res;
+			});
+
+		const cleanedSeasonInfo = `S01E${episodeNumber}`;
+		const windowsFriendlyEpisodeName = episodeDetails.data.name
+			.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
+			.replace(/"/g, "'");
+
+		return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+	}
+
+	// Basic, only caters for 1 OVA
+	const ovaStartIndex = file.name.toLowerCase().search(/OVA|ova/);
+	if (ovaStartIndex > 0) {
+		const seriesName =
+			customName.length > 0
+				? customName
+				: file.name
+						.substring(0, ovaStartIndex)
+						.replace(/-/g, "")
+						.replace(/"/g, "'")
+						.trim();
+
+		const seriesDetails = await axios
+			.get(`${tvMazeBaseUrl}/singlesearch/shows?q=${seriesName}`)
+			.then((res) => {
+				return res;
+			});
+
+		let episodeDetails = await axios
+			.get(
+				`${tvMazeBaseUrl}/shows/${seriesDetails.data.id}/episodes?specials=1`
+			)
+			.then((res) => {
+				return res;
+			});
+
+		episodeDetails = episodeDetails.data.filter((elem) => {
+			return elem.type.includes("special");
+		});
+
+		const windowsFriendlyEpisodeName = episodeDetails[0].name
+			.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
+			.replace(/"/g, "'");
+
+		return `${basePath}${seriesName}.OVA.${windowsFriendlyEpisodeName}.${extension}`;
+	}
 
 	// return file.path;
 };
