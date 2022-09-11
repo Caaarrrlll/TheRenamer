@@ -21,6 +21,10 @@ basicRename = (files) => {
 	});
 };
 
+cleanStringForWindows = (str) => {
+	return str.replace(/\?|<|>|:|\*|\\|\/|\|/g, "").replace(/"/g, "'");
+};
+
 getRenamedFile = async (file) => {
 	const customName = document.getElementById("custom-name").value;
 	const extension = file.name.split(".").pop();
@@ -39,7 +43,7 @@ getRenamedFile = async (file) => {
 			.split(" ")
 			.shift();
 
-		const seriesName =
+		let seriesName =
 			customName.length > 0
 				? customName
 				: preppedName
@@ -84,17 +88,20 @@ getRenamedFile = async (file) => {
 			});
 
 		const cleanedSeasonInfo = `S${seasonNumber}E${episodeNumber}`;
-		const windowsFriendlyEpisodeName = episodeDetails.data.name
-			.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
-			.replace(/"/g, "'");
+		const windowsFriendlyEpisodeName = cleanStringForWindows(
+			episodeDetails.data.name
+		);
 
-		return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		seriesName = cleanStringForWindows(seriesName);
+
+		const fullRename = `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		return fullRename;
 	}
 
 	// Matches: Some Series Name 01x01
 	const startIndexDDxDD = file.name.toLowerCase().search(/\d+x\d+/);
 	if (startIndexDDxDD > 0) {
-		const seriesName =
+		let seriesName =
 			customName.length > 0
 				? customName
 				: file.name
@@ -134,17 +141,20 @@ getRenamedFile = async (file) => {
 			});
 
 		const cleanedSeasonInfo = `S${seasonNumber}E${episodeNumber}`;
-		const windowsFriendlyEpisodeName = episodeDetails.data.name
-			.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
-			.replace(/"/g, "'");
+		const windowsFriendlyEpisodeName = cleanStringForWindows(
+			episodeDetails.data.name
+		);
 
-		return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		seriesName = cleanStringForWindows(seriesName);
+
+		const fullRename = `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		return fullRename;
 	}
 
 	// Matches: Some Series Name - 01
 	const startIndexDigitsOnly = file.name.toLowerCase().search(/\d+/);
 	if (startIndexDigitsOnly > 0) {
-		const seriesName =
+		let seriesName =
 			customName.length > 0
 				? customName
 				: file.name
@@ -172,17 +182,20 @@ getRenamedFile = async (file) => {
 			});
 
 		const cleanedSeasonInfo = `S01E${episodeNumber}`;
-		const windowsFriendlyEpisodeName = episodeDetails.data.name
-			.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
-			.replace(/"/g, "'");
+		const windowsFriendlyEpisodeName = cleanStringForWindows(
+			episodeDetails.data.name
+		);
 
-		return `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		seriesName = cleanStringForWindows(seriesName);
+
+		const fullRename = `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		return fullRename;
 	}
 
 	// Basic, only caters for 1 OVA
 	const ovaStartIndex = file.name.toLowerCase().search(/OVA|ova/);
 	if (ovaStartIndex > 0) {
-		const seriesName =
+		let seriesName =
 			customName.length > 0
 				? customName
 				: file.name
@@ -209,12 +222,13 @@ getRenamedFile = async (file) => {
 			return elem.type.includes("special");
 		});
 
-		const windowsFriendlyEpisodeName = episodeDetails[0].name
-			.replace(/\?|<|>|:|\*|\\|\/|\|/g, "")
-			.replace(/"/g, "'");
+		const windowsFriendlyEpisodeName = cleanStringForWindows(
+			episodeDetails.data.name
+		);
 
-		return `${basePath}${seriesName}.OVA.${windowsFriendlyEpisodeName}.${extension}`;
+		const fullRename = `${basePath}${seriesName}.${cleanedSeasonInfo}.${windowsFriendlyEpisodeName}.${extension}`;
+		return fullRename;
 	}
 
-	// return file.path;
+	return file.path;
 };

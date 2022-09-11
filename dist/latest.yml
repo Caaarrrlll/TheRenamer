@@ -1,8 +1,8 @@
-version: 0.9.0
+version: 0.9.3
 files:
-  - url: renamer-Setup-0.9.0.exe
-    sha512: RiOsJ225jenynpMExhqZt8C6gybJsPBJPY830OMJrF8b/SKsKhQCMApaLhKw8n67EEJTlu3h4PJylGbz247/5w==
-    size: 63062313
-path: renamer-Setup-0.9.0.exe
-sha512: RiOsJ225jenynpMExhqZt8C6gybJsPBJPY830OMJrF8b/SKsKhQCMApaLhKw8n67EEJTlu3h4PJylGbz247/5w==
-releaseDate: '2022-06-19T12:32:04.941Z'
+  - url: renamer-Setup-0.9.3.exe
+    sha512: WlnLGdcFE6eATIKnxUxGfaJUlC45uaaprlWoWlxZYqqilXLQkg38hDDZ9mGa/RLIBof5dJcG2yKLygDF1mRKqQ==
+    size: 63062706
+path: renamer-Setup-0.9.3.exe
+sha512: WlnLGdcFE6eATIKnxUxGfaJUlC45uaaprlWoWlxZYqqilXLQkg38hDDZ9mGa/RLIBof5dJcG2yKLygDF1mRKqQ==
+releaseDate: '2022-09-11T08:45:01.139Z'
