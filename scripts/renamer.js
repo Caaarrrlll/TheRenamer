@@ -218,8 +218,8 @@ getRenamedFile = async (file) => {
 				return res;
 			});
 
-		episodeDetails = episodeDetails.data.filter((elem) => {
-			return elem.type.includes("special");
+		episodeDetails = episodeDetails.data.filter((filteredElement) => {
+			return filteredElement.type.includes("special");
 		});
 
 		const windowsFriendlyEpisodeName = cleanStringForWindows(

@@ -21,7 +21,7 @@ const createWindow = () => {
 	});
 
 	// and load the index.html of the app.
-	mainWindow.loadFile("index.html");
+	mainWindow.loadFile("pages/renamer.html");
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
@@ -57,6 +57,7 @@ const menuTemplate = [
 		label: "File",
 		submenu: [
 			{
+				label: "Refresh",
 				role: "reload",
 			},
 			{
@@ -66,6 +67,31 @@ const menuTemplate = [
 					process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
 				click() {
 					app.quit();
+				},
+			},
+		],
+	},
+	{
+		label: "Navigation",
+		submenu: [
+			{
+				label: "Renamer",
+				accelerator:
+					process.platform == "darwin"
+						? "Command+Shift+A"
+						: "Ctrl+Shift+A",
+				click(item, focusedWindow) {
+					focusedWindow.loadFile("pages/renamer.html");
+				},
+			},
+			{
+				label: "MKV Prop Edit",
+				accelerator:
+					process.platform == "darwin"
+						? "Command+Shift+A"
+						: "Ctrl+Shift+A",
+				click(item, focusedWindow) {
+					focusedWindow.loadFile("pages/prop-edit.html");
 				},
 			},
 		],
