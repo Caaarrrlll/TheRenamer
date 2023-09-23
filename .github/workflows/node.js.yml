@@ -19,7 +19,7 @@ jobs:
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GH_TOKEN: ${{ vars.GH_TOKEN }}
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
             - run: yarn install
@@ -38,7 +38,7 @@ jobs:
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GH_TOKEN: ${{ vars.GH_TOKEN }}
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
             - run: yarn install
@@ -57,7 +57,7 @@ jobs:
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
-                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+                  GH_TOKEN: ${{ vars.GH_TOKEN }}
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
             - run: yarn install
