@@ -1,6 +1,6 @@
 {
 	"name": "renamer",
-	"version": "0.9.4",
+	"version": "0.9.5",
 	"description": "Application to rename video files",
 	"main": "main.js",
 	"scripts": {
