@@ -22,7 +22,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
               env:
-                  GH_TOKEN: ${{ vars.GH_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
             - run: yarn install
             - run: yarn dist-l
             - run: curl -H 'Authorization:${{ secrets.DROPBOX_ACCESS_TOKEN }}' -H 'Content-Type:application/octet-stream' -H 'Dropbox-API-Arg:{"path":"/renamer.deb","mode":{".tag":"overwrite"}}' --data-binary @"dist/renamer_0.9.0_amd64.deb" -X POST https://content.dropboxapi.com/2/files/upload
@@ -42,7 +42,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
               env:
-                  GH_TOKEN: ${{ vars.GH_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
             - run: yarn install
             - run: yarn dist-l
             - run: curl -H 'Authorization:${{ secrets.DROPBOX_ACCESS_TOKEN }}' -H 'Content-Type:application/octet-stream' -H 'Dropbox-API-Arg:{"path":"/renamer.deb","mode":{".tag":"overwrite"}}' --data-binary @"dist/renamer_0.9.0_amd64.deb" -X POST https://content.dropboxapi.com/2/files/upload
@@ -62,7 +62,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
               env:
-                  GH_TOKEN: ${{ vars.GH_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
             - run: yarn install
             - run: yarn dist-l
             - run: curl -H 'Authorization:${{ secrets.DROPBOX_ACCESS_TOKEN }}' -H 'Content-Type:application/octet-stream' -H 'Dropbox-API-Arg:{"path":"/renamer.dmg","mode":{".tag":"overwrite"}}' --data-binary @"dist/renamer-0.9.0.dmg" -X POST https://content.dropboxapi.com/2/files/upload
