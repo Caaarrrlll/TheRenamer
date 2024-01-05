@@ -15,11 +15,13 @@ jobs:
                 node-version: [18.x]
 
         steps:
+            - name: GH_Token
+            - with:
+                 GH_TOKEN: ${{ vars.GH_TOKEN }}
             - uses: actions/checkout@v3
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
-                  GH_TOKEN: ${{ vars.GH_TOKEN }}
                   node-version: ${{ matrix.node-version }}
                   cache: "yarn"
             - run: yarn install
